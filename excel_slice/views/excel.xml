@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--tree view of the Excel model -->
+    <record id="excel_tree" model="ir.ui.view">
+            <field name="name">excel.slice.tree</field>
+            <field name="model">excel.slice</field>
+            <field name="arch" type="xml">
+                <tree string="Excel">
+                    <field name="select_file"/>
+                </tree>
+            </field>
+        </record>
+<!--form view of the Excel model-->
+    <record id="excel_form" model="ir.ui.view">
+            <field name="name">excel.slice.form</field>
+            <field name="model">excel.slice</field>
+            <field name="arch" type="xml">
+                <form string="Excel">
+                    <sheet>
+                        <group>
+                            <field name="select_file" filename="file_name"/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="split_into"/>
+                            <button name="split_excel" type="object" string="Split" class="oe_highlight"/>
+                            <!--<button name="to_zip_folder" type="object" string="To Zip Folder" class="oe_highlight"/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    <!-- action of the appointment menu -->
+    <record id="action_excel" model="ir.actions.act_window">
+            <field name="name">Split Excel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">excel.slice</field>
+            <field name="view_mode">tree,form</field>
+        <!-- default filter in search view-->
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  Create Your First Excel !
+              </p>
+            </field>
+    </record>
+            <menuitem id="menu_excel_root"
+              name="Excel"
+              sequence="11"/>
+            <menuitem id="excel_slice" name="Excel Split" parent="menu_excel_root" action="action_excel" sequence="0"/>
+
+</odoo>
+
